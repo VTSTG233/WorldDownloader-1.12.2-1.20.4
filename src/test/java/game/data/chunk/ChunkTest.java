@@ -51,8 +51,12 @@ class ChunkTest extends PacketBuilderAndParserTest {
         when(codecMock.getBiomeProvider()).thenReturn(new BiomeProvider(biomeMap));
         when(mock.getDimensionCodec()).thenReturn(codecMock);
 
-        RegistryManager registryManager = mock(RegistryManager.class);
+        // use spy object to partially mock RegistryManager's behavior
+        RegistryManager registryManager = spy(RegistryManager.class);
+        // only change the behavior of getBlockEntityRegistry method
         when(registryManager.getBlockEntityRegistry()).thenReturn(new BlockEntityRegistry());
+        // keep the original behavior of setInstance method
+        doCallRealMethod().when(registryManager).setInstance(any());
         RegistryManager.setInstance(registryManager);
 
         WorldManager.setInstance(mock);
