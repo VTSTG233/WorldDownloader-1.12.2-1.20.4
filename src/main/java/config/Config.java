@@ -356,7 +356,7 @@ public class Config {
 
     @Option(name = "--local-port", aliases = "-l",
             usage = "The port on which the world downloader's server will run.")
-    public int portLocal = 25565;
+    public int portLocal = 25566;
 
     @Option(name = "--extended-render-distance", aliases = "-r",
             usage = "When set, send downloaded chunks to client to extend render distance to given amount.")

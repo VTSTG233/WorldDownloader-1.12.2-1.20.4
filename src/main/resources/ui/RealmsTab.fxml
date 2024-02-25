@@ -18,7 +18,7 @@
                         <RowConstraints prefHeight="45.0" />
                         <RowConstraints prefHeight="150.0" />
                 </rowConstraints>
-                <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Minecraft username" />
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="Minecraft用户名" />
                 <TextField GridPane.columnIndex="1" GridPane.rowIndex="0"  fx:id="minecraftUsername" />
                 <Button GridPane.columnIndex="3" GridPane.rowIndex="0" fx:id="loadButton"  mnemonicParsing="false" onAction="#requestList" prefHeight="27.0" prefWidth="60.0" text="Load" />
 
