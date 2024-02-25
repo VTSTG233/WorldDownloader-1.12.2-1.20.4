@@ -12,7 +12,7 @@ import java.net.Socket;
 import static util.ExceptionHandling.attempt;
 
 public class ConnectionDetails {
-    private final int DEFAULT_PORT = 25566;
+    private final int DEFAULT_PORT = 25565;
 
     private String host;
     private int portRemote;

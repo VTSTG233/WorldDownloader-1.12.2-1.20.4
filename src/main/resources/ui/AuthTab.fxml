@@ -18,7 +18,7 @@
          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="67.0" />
          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="149.0" />
         </rowConstraints>
-        <Button fx:id="checkButton" mnemonicParsing="false" onAction="#checkButtonPressed" prefHeight="27.0" prefWidth="220.0" text="检查身份验证状态" GridPane.columnIndex="3" />
+        <Button fx:id="checkButton" mnemonicParsing="false" onAction="#checkButtonPressed" prefHeight="27.0" prefWidth="220.0" text="Check authentication status" GridPane.columnIndex="3" />
       <VBox fx:id="radioContainer" prefHeight="89.0" prefWidth="167.0" GridPane.columnIndex="1" GridPane.rowSpan="2">
          <GridPane.margin>
             <Insets top="5.0" />
@@ -38,9 +38,9 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Hyperlink fx:id="infoLink" prefHeight="23.0" prefWidth="156.0" text="更多信息" textAlignment="RIGHT" GridPane.columnIndex="1" />
+                  <Hyperlink fx:id="infoLink" prefHeight="23.0" prefWidth="156.0" text="More information" textAlignment="RIGHT" GridPane.columnIndex="1" />
                   <TextField fx:id="accessToken" promptText="Access Token" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <Label text="Access Token(客户端值)" GridPane.rowIndex="0" />
+                  <Label text="Access Token" GridPane.rowIndex="0" />
                </children>
             </GridPane>
          </children>
@@ -58,7 +58,7 @@
                     </rowConstraints>
                     <children>
                         <TextField fx:id="linkCopyField" editable="false" promptText="Link" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                        <Label text="将此链接复制到您的浏览器中:" GridPane.rowIndex="0" />
+                        <Label text="Copy this link into your browser:" GridPane.rowIndex="0" />
                     </children>
                 </GridPane>
             </children>
@@ -74,7 +74,7 @@
          </GridPane.margin></Label>
       <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3">
          <children>
-            <Label fx:id="authFailedLabel" layoutY="6.0" styleClass="label-err" text="身份验证不成功，请尝试使用其他方法." />
+            <Label fx:id="authFailedLabel" layoutY="6.0" styleClass="label-err" text="Authentication was not successful, try using a different method." />
          </children>
       </Pane>
     </GridPane>

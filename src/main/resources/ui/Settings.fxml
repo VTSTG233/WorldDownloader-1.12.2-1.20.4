@@ -21,16 +21,16 @@
                         <RowConstraints minHeight="10.0" prefHeight="32.0" />
                     </rowConstraints>
                     <TextField fx:id="server" prefHeight="25.0" prefWidth="93.0" styleClass="field-nonempty" GridPane.columnIndex="1" GridPane.columnSpan="2" />
-                    <Label text="服务器地址" GridPane.columnSpan="2">
+                    <Label text="Server address" GridPane.columnSpan="2">
                         <tooltip>
-                            <QuickTooltip text="服务器地址. 例如，“example.com”或“192.168.0.1:25566'" />
+                            <QuickTooltip text="Server address. E.g. 'example.com' or '192.168.0.1:25565'" />
                         </tooltip>
                     </Label>
-                    <Hyperlink fx:id="verifyAuthLink" text="验证身份验证" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Hyperlink fx:id="verifyAuthLink" text="Verify authentication" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 </GridPane>
             </AnchorPane>
         </Tab>
-        <Tab fx:id="generalTab" text="大体的">
+        <Tab fx:id="generalTab" text="General">
             <AnchorPane prefHeight="237.0" prefWidth="620.0">
                 <GridPane layoutX="14.0" layoutY="6.0" prefHeight="231.0" prefWidth="500.0">
                     <columnConstraints>
@@ -50,9 +50,9 @@
                         <RowConstraints prefHeight="8.0" />
                         <RowConstraints prefHeight="32.0" />
                     </rowConstraints>
-                    <Label text="扩展渲染距离" GridPane.rowIndex="0">
+                    <Label text="Extended render distance" GridPane.rowIndex="0">
                         <tooltip>
-                            <QuickTooltip text="以块为单位渲染距离。如果大于服务器的渲染距离，请将之前下载的区块发送回游戏." />
+                            <QuickTooltip text="Render distance in chunks. If greater than the server's render distance, send previously downloaded chunks back to the game." />
                         </tooltip>
                     </Label>
                     <Slider fx:id="extendedDistance" blockIncrement="1" layoutX="10.0" layoutY="98.0" majorTickUnit="1.0" max="32" minorTickCount="0" prefHeight="25.0" prefWidth="93.0" showTickLabels="true" snapToTicks="true" GridPane.columnIndex="1" GridPane.columnSpan="3" />
@@ -60,21 +60,21 @@
                         <IntField fx:id="extendedDistanceText" prefWidth="40" AnchorPane.leftAnchor="10" />
                     </AnchorPane>
                     <CheckBox fx:id="markUnsaved" prefHeight="25.0" prefWidth="93.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                    <Label text="标记未保存的区块" GridPane.rowIndex="2">
+                    <Label text="Mark unsaved chunks" GridPane.rowIndex="2">
                         <tooltip>
-                            <QuickTooltip text="尚未保存到磁盘的彩色块以红色显示" />
+                            <QuickTooltip text="Colour chunks that haven't been saved to disk in red" />
                         </tooltip>
                     </Label>
                     <CheckBox fx:id="markOld" prefHeight="25.0" prefWidth="93.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                     <Label text="Grey out old chunks" GridPane.rowIndex="3">
                         <tooltip>
-                            <QuickTooltip text="使上一个会话中下载的区块变暗。" />
+                            <QuickTooltip text="Darken chunks downloaded in a previous session." />
                         </tooltip>
                     </Label>
                     <CheckBox fx:id="renderOtherPlayers" prefHeight="25.0" prefWidth="93.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                    <Label text="在地图上显示玩家" GridPane.rowIndex="4">
+                    <Label text="Show players on map" GridPane.rowIndex="4">
                         <tooltip>
-                            <QuickTooltip text="在概览地图上显示其他玩家" />
+                            <QuickTooltip text="Show other players on the overview map" />
                         </tooltip>
                     </Label>
 
@@ -90,16 +90,16 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
-                                    <Label text="发送信息消息" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <Label text="Send info messages" GridPane.columnIndex="0" GridPane.rowIndex="0">
                                         <tooltip>
-                                            <QuickTooltip text="向玩家显示有关已保存宝箱和其他物品栏的信息消息" />
+                                            <QuickTooltip text="Show information messages to the player about saved chests and other inventories" />
                                         </tooltip>
                                     </Label>
                                     <CheckBox fx:id="enableInfoMessages" prefHeight="25.0" prefWidth="93.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                                    <Label text="绘制扩展块" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <Label text="Draw extended chunks" GridPane.columnIndex="0" GridPane.rowIndex="1">
                                         <tooltip>
-                                            <QuickTooltip text="由渲染距离扩展器加载的颜色块为绿色" />
+                                            <QuickTooltip text="Colour chunks that were loaded by render distance extender in green" />
                                         </tooltip>
                                     </Label>
                                     <CheckBox fx:id="enableDrawExtendedChunks" prefHeight="25.0" prefWidth="93.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -107,17 +107,17 @@
                             </AnchorPane>
                         </TitledPane>
                     </AnchorPane>
-                    <Label text="下载器端口" GridPane.rowIndex="7">
+                    <Label text="Downloader port" GridPane.rowIndex="7">
                         <tooltip>
-                            <QuickTooltip text="下载进程的代理服务器将在其上运行的端口" />
+                            <QuickTooltip text="Port on which the downloader's proxy server will run" />
                         </tooltip>
                     </Label>
-                    <DefaultIntField fx:id="portLocal" defaultVal="25566" prefHeight="53.0" prefWidth="336.0" text="default" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                    <DefaultIntField fx:id="portLocal" defaultVal="25565" prefHeight="53.0" prefWidth="336.0" text="default" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                     <Label fx:id="portVerifyLabel" prefHeight="17.0" prefWidth="90.0" styleClass="label-err" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="7" />
 
-                    <Label layoutX="10.0" layoutY="145.0" text="启用洞穴模式" GridPane.rowIndex="5">
+                    <Label layoutX="10.0" layoutY="145.0" text="Enable cave mode" GridPane.rowIndex="5">
                         <tooltip>
-                            <QuickTooltip text="当玩家被认为在地下时，自动切换到特定于洞穴的渲染模式。" />
+                            <QuickTooltip text="Automatically switch to cave-specific rendering mode when the player is thought to be underground." />
                         </tooltip>
                     </Label>
                     <CheckBox fx:id="enableCaveRenderMode" layoutX="156.0" layoutY="141.0" prefHeight="25.0" prefWidth="93.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -139,18 +139,18 @@
                         <RowConstraints prefHeight="32.0" />
                     </rowConstraints>
                     <TextField fx:id="worldOutputDir" prefHeight="25.0" prefWidth="93.0" GridPane.columnIndex="1" />
-                    <Label text="世界产量" />
+                    <Label text="World output" />
                     <AnchorPane GridPane.columnIndex="2">
                         <Hyperlink fx:id="openWorldDir" text="Open" AnchorPane.leftAnchor="20" />
                     </AnchorPane>
 
-                    <Label text="水平种子" GridPane.rowIndex="1" />
+                    <Label text="Level seed" GridPane.rowIndex="1" />
                     <LongField fx:id="levelSeed" layoutX="10.0" layoutY="98.0" prefHeight="25.0" prefWidth="93.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
                     <CheckBox fx:id="disableWorldGen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                    <Label text="防止块生成" GridPane.rowIndex="3" />
+                    <Label text="Prevent chunk generation" GridPane.rowIndex="3" />
 
-                    <Label text="抵消" GridPane.rowIndex="2" />
+                    <Label text="Offset" GridPane.rowIndex="2" />
                     <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

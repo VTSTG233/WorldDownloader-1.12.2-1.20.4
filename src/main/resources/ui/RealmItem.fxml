@@ -9,7 +9,7 @@
    <Label fx:id="server" layoutX="14.0" layoutY="14.0" text="..." AnchorPane.leftAnchor="14.0"
           AnchorPane.topAnchor="4.0"/>
    <Label fx:id="motd" layoutX="14.0" layoutY="31.0" text="..." AnchorPane.bottomAnchor="4.0"/>
-   <Button fx:id="requestButton" mnemonicParsing="false" text="请求 IP" AnchorPane.bottomAnchor="5.0"
+   <Button fx:id="requestButton" mnemonicParsing="false" text="Request IP" AnchorPane.bottomAnchor="5.0"
            AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0"/>
    <Button fx:id="useButton" mnemonicParsing="false" text="Select" AnchorPane.bottomAnchor="5.0" visible="false"
            AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0"/>
