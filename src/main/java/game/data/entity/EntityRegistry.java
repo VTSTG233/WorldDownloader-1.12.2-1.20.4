@@ -2,7 +2,11 @@ package game.data.entity;
 
 import static util.ExceptionHandling.attempt;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -14,12 +18,11 @@ import game.data.chunk.Chunk;
 import game.data.coordinates.CoordinateDim2D;
 import game.data.entity.specific.Villager;
 import packets.DataTypeProvider;
-import packets.UUID;
 import se.llbit.nbt.SpecificTag;
 
 public class EntityRegistry {
 
-    private final Map<UUID, PlayerEntity> players;
+    private final Map<Integer, PlayerEntity> players;
     private final Map<CoordinateDim2D, Set<Entity>> perChunk;
     private final Map<Integer, Entity> entities;
     private final WorldManager worldManager;
@@ -70,6 +73,7 @@ public class EntityRegistry {
             });
             
             if (ent instanceof Villager villager) {
+                WorldManager.getInstance().getVillagerManager().loadPreviousTradeAt(villager);
                 villager.registerOnTradeUpdate((pos) -> markUnsaved(pos.globalToDimChunk()));
             }
         }));
@@ -77,64 +81,8 @@ public class EntityRegistry {
 
     public void addPlayer(DataTypeProvider provider) {
         executor.execute(() -> attempt(() -> {
-            PlayerEntity player = PlayerEntity.parse(provider);
-            players.put(player.getUUID(), player);
-        }));
-    }
-
-    public void updatePlayerAction(DataTypeProvider provider) {
-        executor.execute(() -> attempt(() -> {
-            byte actions = provider.readNext();
-            int playerCnt = provider.readVarInt();
-
-            for (int i = 0; i < playerCnt; i++) {
-                UUID uuid = provider.readUUID();
-
-                if ((actions & 0x01) > 0) {
-                    PlayerEntity player = new PlayerEntity(uuid);
-                    players.put(uuid, player);
-
-                    String name = provider.readString();
-                    int properties = provider.readVarInt();
-                    for (int j = 0; j < properties; j++) {
-                        provider.readString();
-                        provider.readString();
-                        boolean signed = provider.readBoolean();
-                        if (signed) provider.readString();
-                    }
-                }
-
-                if ((actions & 0x02) > 0) {
-                    boolean signature = provider.readBoolean();
-                    if (signature) {
-                        provider.readUUID();
-                        provider.readLong();
-                        int encKeySz = provider.readVarInt();
-                        provider.readByteArray(encKeySz);
-                        int pubKeySz = provider.readVarInt();
-                        provider.readByteArray(pubKeySz);
-                    }
-                }
-
-                if ((actions & 0x04) > 0) {
-                    provider.readVarInt();
-                }
-
-                if ((actions & 0x08) > 0) {
-                    provider.readBoolean();
-                }
-
-                if ((actions & 0x10) > 0) {
-                    provider.readVarInt();
-                }
-
-                if ((actions & 0x20) > 0) {
-                    boolean displayName = provider.readBoolean();
-                    if (displayName) {
-                        provider.readChat();
-                    }
-                }
-            }
+            int entId = provider.readVarInt();
+            players.put(entId, PlayerEntity.parse(provider));
         }));
     }
 
@@ -191,14 +139,12 @@ public class EntityRegistry {
     }
 
     public IMovableEntity getMovableEntity(int entId) {
-        Entity tmpEnt = entities.get(entId);
-        if (tmpEnt == null) return null;
-        IMovableEntity ent = players.get(tmpEnt.uuid);
+        IMovableEntity ent = players.get(entId);
         if (ent != null) {
             return ent;
         }
 
-        return tmpEnt;
+        return entities.get(entId);
     }
 
     public List<SpecificTag> getEntitiesNbt(CoordinateDim2D location) {
@@ -237,8 +183,9 @@ public class EntityRegistry {
         while (count-- > 0) {
             int id = provider.readVarInt();
             if (entities.containsKey(id)) {
-                players.remove(entities.get(id).uuid);
                 entities.remove(id);
+            } else {
+                players.remove(id);
             }
         }
     }

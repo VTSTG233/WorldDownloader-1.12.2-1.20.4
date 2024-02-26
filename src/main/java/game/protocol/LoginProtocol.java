@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginProtocol extends Protocol {
-    private final Map<Integer, String> clientBound;
-    private final Map<Integer, String> serverBound;
+    private String version;
+    private Map<Integer, String> clientBound;
+    private Map<Integer, String> serverBound;
 
     public LoginProtocol() {
+        version = "LOGIN";
         clientBound = new HashMap<>();
         serverBound = new HashMap<>();
 

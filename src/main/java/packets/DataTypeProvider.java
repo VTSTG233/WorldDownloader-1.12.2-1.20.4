@@ -9,7 +9,6 @@ import game.data.container.Slot_1_12;
 import game.data.coordinates.CoordinateDouble3D;
 import packets.version.DataTypeProvider_1_13;
 import packets.version.DataTypeProvider_1_14;
-import packets.version.DataTypeProvider_1_20_2;
 import se.llbit.nbt.NamedTag;
 import se.llbit.nbt.SpecificTag;
 
@@ -38,7 +37,6 @@ public class DataTypeProvider {
 
     public static DataTypeProvider ofPacket(byte[] finalFullPacket) {
         return Config.versionReporter().select(DataTypeProvider.class,
-                Option.of(Version.V1_20_2, () -> new DataTypeProvider_1_20_2(finalFullPacket)),
                 Option.of(Version.V1_14, () -> new DataTypeProvider_1_14(finalFullPacket)),
                 Option.of(Version.V1_13, () -> new DataTypeProvider_1_13(finalFullPacket)),
                 Option.of(Version.ANY, () -> new DataTypeProvider(finalFullPacket))
@@ -225,7 +223,7 @@ public class DataTypeProvider {
     public UUID readUUID() {
         return new UUID(readLong(), readLong());
     }
-
+    
     public UUID readOptUUID() {
         if (readBoolean()) {
             return readUUID();

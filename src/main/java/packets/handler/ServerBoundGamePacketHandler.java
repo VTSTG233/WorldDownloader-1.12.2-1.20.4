@@ -1,7 +1,6 @@
 package packets.handler;
 
 import config.Version;
-import game.NetworkMode;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,8 +27,6 @@ public class ServerBoundGamePacketHandler extends PacketHandler {
 
         PacketOperator updatePlayerRotation = provider -> {
             double yaw = provider.readFloat() % 360;
-            provider.readFloat(); // pitch
-            provider.readBoolean(); // on ground
             WorldManager.getInstance().setPlayerRotation(yaw);
             return true;
         };
@@ -81,11 +78,6 @@ public class ServerBoundGamePacketHandler extends PacketHandler {
 
         operations.put("Interact", provider -> {
             WorldManager.getInstance().getVillagerManager().lastInteractedWith(provider);
-            return true;
-        });
-
-        operations.put("ConfigurationAcknowledged", provider ->{
-            getConnectionManager().setMode(NetworkMode.CONFIGURATION);
             return true;
         });
     }

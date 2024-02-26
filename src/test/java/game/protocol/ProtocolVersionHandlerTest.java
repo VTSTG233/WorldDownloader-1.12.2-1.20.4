@@ -25,7 +25,6 @@ class ProtocolVersionHandlerTest {
         versions.put(758, "1.18");
         versions.put(761, "1.19.3");
         versions.put(763, "1.20");
-        versions.put(764, "1.20.2");
 
         versions.forEach((k, v) -> {
             assertThat(pvh.getProtocolByProtocolVersion(k).getVersion()).isEqualTo(v);

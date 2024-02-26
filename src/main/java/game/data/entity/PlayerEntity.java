@@ -17,12 +17,9 @@ public class PlayerEntity implements IMovableEntity {
     private boolean hasRequestedName = false;
     private String name;
 
-    PlayerEntity(UUID uuid) {
-        this.uuid = uuid;
-    }
-
     public static PlayerEntity parse(DataTypeProvider provider) {
-        PlayerEntity ent = new PlayerEntity(provider.readUUID());
+        PlayerEntity ent = new PlayerEntity();
+        ent.uuid = provider.readUUID();
         ent.readPosition(provider);
 
         return ent;
@@ -88,9 +85,5 @@ public class PlayerEntity implements IMovableEntity {
             fetchName();
         }
         return name;
-    }
-
-    public UUID getUUID() {
-        return uuid;
     }
 }

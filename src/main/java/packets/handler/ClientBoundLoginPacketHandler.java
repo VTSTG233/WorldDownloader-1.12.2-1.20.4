@@ -35,12 +35,7 @@ public class ClientBoundLoginPacketHandler extends PacketHandler {
 
             String username = provider.readString();
             System.out.println("Login success: " + username + " logged in with uuid " + uuid);
-
-            if (Config.versionReporter().isAtLeast(Version.V1_20_2)) {
-                getConnectionManager().setMode(NetworkMode.CONFIGURATION);
-            } else {
-                getConnectionManager().setMode(NetworkMode.GAME);
-            }
+            getConnectionManager().setMode(NetworkMode.GAME);
             return true;
         });
         operations.put("set_compression", provider -> {
